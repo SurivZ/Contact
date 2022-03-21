@@ -1,3 +1,5 @@
+__author__ = { 'name': 'David Serrano' }
+
 from flask import Flask, render_template, request, redirect, flash
 from flask_mysqldb import MySQL
 
@@ -26,8 +28,7 @@ def add_contact():
 		email = request.form['email']
 		cursor = db.connection.cursor()
 		cursor.execute(
-			'INSERT INTO contacts (fullname, phone, email) VALUES (%s, %s, %s)',    
-			(fullname, phone, email)
+			'INSERT INTO contacts (fullname, phone, email) VALUES (%s, %s, %s)', (fullname, phone, email)
 		)
 		db.connection.commit()
 		flash('Contact added successfully')
@@ -36,7 +37,7 @@ def add_contact():
 @app.route('/edit/<string:id>')
 def edit(id):
 	cursor = db.connection.cursor()
-	cursor.execute('SELECT * FROM contacts WHERE id = {}'.format(id))
+	cursor.execute('SELECT * FROM contacts WHERE id = %s' % id)
 	data = cursor.fetchall()
 	return render_template('edit.html', data=data[0])
 
@@ -47,13 +48,9 @@ def update(id):
 		phone = request.form['phone']
 		email = request.form['email']
 		cursor = db.connection.cursor()
-		cursor.execute('''
-			UPDATE contacts
-			SET fullname = %s,
-				phone = %s,
-				email = %s
-			WHERE id = %s
-		''', (fullname, phone, email, id))
+		cursor.execute(
+			'UPDATE contacts SET fullname = %s, phone = %s, email = %s WHERE id = %s', (fullname, phone, email, id)
+		)
 		db.connection.commit()
 		flash('Contact updated successfully')
 		return redirect('/')
@@ -61,7 +58,7 @@ def update(id):
 @app.route('/delete/<string:id>')
 def delete(id):
 	cursor = db.connection.cursor()
-	cursor.execute('DELETE FROM contacts WHERE id = {}'.format(id))
+	cursor.execute('DELETE FROM contacts WHERE id = %s' % id)
 	db.connection.commit()
 	flash('Contact removed successfully')
 	return redirect('/')
