@@ -39,12 +39,12 @@
             </thead>
             <tbody>{% for contact in data %}
               <tr>
-                <td>{{ contact.1 }}</td>
-                <td>{{ contact.2 }}</td>
-                <td>{{ contact.3 }}</td>
+                <td>{{ contact['_fullname'] }}</td>
+                <td>{{ contact['_phone'] }}</td>
+                <td>{{ contact['_email'] }}</td>
                 <td>
-                  <a href="/edit/{{ contact.0 }}" class="btn btn-outline-primary">Edit</a>
-                  <a href="/delete/{{ contact.0 }}" class="btn btn-outline-danger" id="btn-delete" onclick="">Delete</a>
+                  <a href="/edit/{{ contact['_id'] }}" class="btn btn-outline-primary">Edit</a>
+                  <a href="/delete/{{ contact['_id'] }}" class="btn btn-outline-danger" id="btn-delete" onclick="">Delete</a>
                 </td>
               </tr>{% endfor %}
             </tbody>
