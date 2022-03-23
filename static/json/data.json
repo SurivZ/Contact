@@ -1,12 +1,22 @@
 {
     "contacts": [
         {
-            "0": {
-                "_id": 0,
-                "_fullname": "Franklin Serrano",
-                "_phone": "+573015870323",
-                "_email": "franklinserrano23@gmail.com"
-            }
+            "_id": 0,
+            "_fullname": "Franklin Serrano",
+            "_phone": "+573015870323",
+            "_email": "franklinserrano23@gmail.com"
+        },
+        {
+            "_id": 1,
+            "_fullname": "Ender Card",
+            "_phone": "",
+            "_email": "zentryux@gmail.com"
+        },
+        {
+            "_id": 2,
+            "_fullname": "David Serrano",
+            "_phone": "+573015870323",
+            "_email": ""
         }
     ]
 }
